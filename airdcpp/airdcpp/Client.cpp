@@ -435,6 +435,9 @@ void Client::onChatMessage(const ChatMessagePtr& aMessage) noexcept {
 		getHubIdentity().getParams(params, "hub", false);
 		params["hubURL"] = getHubUrl();
 		getMyIdentity().getParams(params, "my", true);
+		params["userI4"] = aMessage->getFrom()->getIdentity().getIp4();
+		params["2code"] = aMessage->getFrom()->getIdentity().getCountry();
+		params["userCID"] = aMessage->getFrom()->getUser()->getCID().toBase32();
 		LOG(LogManager::CHAT, params);
 	}
 
